@@ -1,0 +1,1069 @@
+/* =================================================================
+   Meletis · Frontend mockup
+   Paleta: verdes hoja + crema + ámbar otoñal
+
+   GUÍA DE LECTURA (para quien llega nuevo al proyecto):
+   - Las variables de color y de forma viven en :root (abajo).
+     Cámbiarlas ahí una sola vez actualiza todo el sitio.
+   - Cada bloque de reglas escribe una propiedad por línea para que
+     sea fácil de leer y de modificar.
+   - Las clases siguen la convención BLOQUE__elemento--modificador
+     (ej: .sidebar__head, .btn--primary).
+   ================================================================= */
+
+:root {
+  /* ---------- Colores: verdes ---------- */
+  --green-900: #234023; /* verde más oscuro (títulos) */
+  --green-700: #3f6b40;
+  --green-600: #4f8050;
+  --green-500: #5b8c5a;
+  --green-300: #a9c8a4;
+  --green-50:  #eef4ec; /* verde casi blanco (fondos suaves) */
+
+  /* ---------- Colores: ámbar (acentos otoñales) ---------- */
+  --amber-500: #c98a3a;
+  --amber-300: #e8c79a;
+
+  /* ---------- Colores: cremas y papel (fondos) ---------- */
+  --cream:      #faf7f0; /* fondo claro principal (chat, paneles) */
+  --cream-2:    #f3eee3; /* crema un poco más oscuro (sidebar) */
+  --paper:      #ffffff; /* blanco puro: tarjetas, burbujas, inputs */
+
+  /* ---------- Colores: texto (tinta) ---------- */
+  --ink:       #2a2f29; /* texto principal */
+  --ink-soft:  #5d655c; /* texto secundario */
+  --ink-faint: #8b948a; /* texto tenue (notas, placeholders) */
+
+  /* ---------- Colores: líneas y estados ---------- */
+  --line:      #e4ded0; /* bordes normales */
+  --line-soft: #efe9dd; /* bordes muy suaves */
+  --danger:    #c0533f; /* acciones destructivas (eliminar) */
+
+  /* ---------- Forma: radios de esquina ---------- */
+  --radius-sm: 8px;
+  --radius:    14px;
+  --radius-lg: 22px;
+
+  /* ---------- Forma: sombras ---------- */
+  --shadow-sm: 0 1px 2px rgba(40, 50, 35, .06);
+  --shadow:    0 8px 30px rgba(45, 60, 40, .10);
+  --shadow-lg: 0 24px 60px rgba(35, 55, 35, .16);
+
+  /* ---------- Tipografías ---------- */
+  --font-sans:  'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+
+  /* ---------- Medidas de la interfaz ---------- */
+  --sidebar-width: 290px; /* ancho del panel lateral; se reutiliza para esconderlo */
+}
+
+:root[data-theme="dark"] {
+  --cream: #615c2a;
+  --cream-2: #503701;
+  --paper: #413f28;
+}
+
+/* Reseteo básico: que padding/border no agranden las cajas, y sin
+   márgenes ni rellenos por defecto del navegador. */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background: var(--cream-dark); /* nota: queda oculto bajo las vistas a pantalla completa */
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+button {
+  font-family: inherit; /* los botones heredan la fuente del sitio */
+  cursor: pointer;
+}
+
+/* ---------- Vistas (un "router" muy simple controlado por JS) ----------
+   Solo puede haber una vista activa a la vez. El JS pone/quita .is-active. */
+.view {
+  display: none;
+  min-height: 100vh;
+}
+.view.is-active {
+  display: block;
+}
+/* Estas dos vistas usan flex cuando están activas (layout a columnas/filas). */
+.view--app.is-active,
+.view--auth.is-active {
+  display: flex;
+}
+
+/* ---------- Marca / logo ---------- */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand--center {
+  justify-content: center;
+  align-items: center;
+}
+.brand__logo {
+  width: 34px;
+  height: 34px;
+  background: url('assets/logo.svg') center / contain no-repeat;
+  display: inline-block;
+  filter: drop-shadow(0 2px 4px rgba(60, 90, 55, .18));
+}
+.brand__name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.45rem;
+  letter-spacing: -.01em;
+  color: var(--green-900);
+}
+/* Variante pequeña de la marca (la del sidebar) */
+.brand--sm .brand__logo {
+  width: 28px;
+  height: 28px;
+}
+.brand--sm .brand__name {
+  font-size: 1.2rem;
+}
+
+/* [data-logo] genéricos: cualquier elemento marcado así muestra el logo
+   (se usan como avatar del bot y como íconos). */
+[data-logo] {
+  background: url('assets/logo.svg') center / contain no-repeat;
+  display: inline-block;
+}
+
+/* ---------- Botones ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: var(--radius);
+  padding: 12px 20px;
+  font-size: .95rem;
+  font-weight: 600;
+  transition: transform .12s ease, box-shadow .2s ease, background .2s ease;
+}
+/* Pequeño "hundido" al pulsar, para dar sensación de clic. */
+.btn:active {
+  transform: translateY(1px);
+}
+/* Modificador: ocupa todo el ancho disponible. */
+.btn--block {
+  width: 100%;
+}
+/* Botón principal (acción más importante). */
+.btn--primary {
+  background: linear-gradient(135deg, var(--green-600), var(--green-700));
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(63, 107, 64, .28);
+}
+.btn--primary:hover {
+  box-shadow: 0 10px 24px rgba(63, 107, 64, .38);
+}
+/* Botón secundario / discreto (solo borde). */
+.btn--ghost {
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+}
+.btn--ghost:hover {
+  background: var(--cream-2);
+  color: var(--ink);
+}
+
+/* Enlace con aspecto de texto (no de botón). */
+.link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--green-700);
+  font-weight: 600;
+  font-size: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.link:hover {
+  color: var(--green-900);
+}
+
+/* Botón que solo contiene un ícono (cuadrado, sin fondo). */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--ink-soft);
+  border-radius: 10px;
+  padding: 7px;
+  transition: background .15s, color .15s;
+}
+.icon-btn:hover {
+  background: var(--cream-2);
+  color: var(--ink);
+}
+
+/* ---------- Campos de formulario ---------- */
+.field {
+  display: block;
+  margin-bottom: 16px;
+}
+.field__label {
+  display: block;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+.field__input {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: .95rem;
+  color: var(--ink);
+  transition: border-color .15s, box-shadow .15s;
+}
+.field__input::placeholder {
+  color: var(--ink-faint);
+}
+/* Estado de foco: borde verde + halo suave alrededor. */
+.field__input:focus {
+  outline: none;
+  border-color: var(--green-500);
+  box-shadow: 0 0 0 3px rgba(91, 140, 90, .18);
+}
+/* Variante de área de texto (se puede estirar en vertical). */
+.field__input--area {
+  resize: vertical;
+  min-height: 56px;
+  line-height: 1.5;
+}
+
+/* =================================================================
+   VISTA AUTH (login / registro)
+   Dos columnas: arte a la izquierda, formulario a la derecha.
+   ================================================================= */
+.view--auth {
+  flex-direction: row;
+}
+
+/* Columna decorativa (degradado verde + brillo + hojas cayendo). */
+.auth-art {
+  position: relative;
+  flex: 1 1 50%;
+  background:
+    radial-gradient(120% 80% at 20% 10%, rgba(91, 140, 90, .35), transparent 60%),
+    linear-gradient(160deg, var(--green-900), var(--green-700) 70%, var(--green-600));
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 56px 40px;
+}
+/* Mancha de luz ámbar, abajo a la derecha. */
+.auth-art__glow {
+  position: absolute;
+  inset: auto -10% -30% auto;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(232, 199, 154, .4), transparent 70%);
+  filter: blur(8px);
+}
+.auth-art__quote {
+  position: relative;
+  z-index: 2;
+  max-width: 420px;
+  color: #f3efe3;
+}
+.auth-art__quote p {
+  font-family: var(--font-serif);
+  font-size: 1.9rem;
+  line-height: 1.25;
+  font-weight: 500;
+}
+.auth-art__quote cite {
+  display: block;
+  margin-top: 16px;
+  font-style: normal;
+  font-size: .9rem;
+  color: var(--green-300);
+  letter-spacing: .02em;
+}
+
+/* Hojas decorativas que caen de fondo. */
+.falling-leaf {
+  position: absolute;
+  top: -40px;
+  width: 30px;
+  height: 30px;
+  background: url('assets/logo.svg') center / contain no-repeat;
+  opacity: .5;
+  animation: fall linear infinite;
+}
+/* Cada hoja arranca en una posición y a un ritmo distintos. */
+.falling-leaf--1 {
+  left: 18%;
+  animation-duration: 11s;
+}
+.falling-leaf--2 {
+  left: 52%;
+  width: 22px;
+  height: 22px;
+  opacity: .35;
+  animation-duration: 14s;
+  animation-delay: 3s;
+}
+.falling-leaf--3 {
+  left: 78%;
+  width: 26px;
+  height: 26px;
+  opacity: .4;
+  animation-duration: 9s;
+  animation-delay: 1.5s;
+}
+@keyframes fall {
+  0% {
+    transform: translateY(0) translateX(0) rotate(-10deg);
+  }
+  50% {
+    transform: translateY(46vh) translateX(40px) rotate(160deg);
+  }
+  100% {
+    transform: translateY(95vh) translateX(-10px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Columna del formulario (centrada). */
+.auth-panel {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  gap: 28px;
+  background: var(--cream);
+}
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: 30px;
+}
+/* Pestañas "Iniciar sesión / Crear cuenta". */
+.auth-tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--cream-2);
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 24px;
+}
+.auth-tab {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 9px;
+  border-radius: 9px;
+  font-weight: 600;
+  font-size: .9rem;
+  color: var(--ink-soft);
+  transition: background .2s, color .2s, box-shadow .2s;
+}
+/* Pestaña activa: se "eleva" sobre el fondo. */
+.auth-tab.is-active {
+  background: var(--paper);
+  color: var(--green-900);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Formularios: solo se muestra el que tiene .is-active (lo cambia el JS). */
+.auth-form {
+  display: none;
+}
+.auth-form.is-active {
+  display: block;
+  animation: fadeUp .35s ease;
+}
+.auth-title {
+  font-family: var(--font-serif);
+  font-size: 1.55rem;
+  color: var(--green-900);
+  font-weight: 600;
+}
+.auth-subtitle {
+  color: var(--ink-soft);
+  font-size: .92rem;
+  margin: 4px 0 22px;
+}
+.auth-hint {
+  text-align: center;
+  margin-top: 16px;
+  font-size: .88rem;
+  color: var(--ink-soft);
+}
+.auth-foot {
+  font-size: .78rem;
+  color: var(--ink-faint);
+}
+
+/* Entrada suave: aparece subiendo unos píxeles. */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* =================================================================
+   VISTA ONBOARDING (perfil de aprendizaje)
+   ================================================================= */
+.view--onboarding {
+  background: var(--cream);
+}
+.onboarding {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.onboarding__head {
+  text-align: center;
+}
+/* Etiqueta tipo "píldora" (Paso 1 de 1). */
+.pill {
+  display: inline-block;
+  background: var(--green-50);
+  color: var(--green-700);
+  border: 1px solid var(--green-300);
+  border-radius: 999px; /* 999px = forma de cápsula totalmente redondeada */
+  padding: 5px 14px;
+  font-size: .78rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.onboarding__title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--green-900);
+  letter-spacing: -.01em;
+}
+.onboarding__subtitle {
+  color: var(--ink-soft);
+  margin-top: 8px;
+}
+
+.onboarding-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+/* Cada "bloque" del formulario (fortalezas, debilidades, etc.). */
+.ob-block {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+}
+.ob-block__title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--green-900);
+}
+.ob-block__hint {
+  font-size: .85rem;
+  color: var(--ink-soft);
+  margin: 4px 0 12px;
+}
+
+/* Chips de selección múltiple (estilos de aprendizaje). */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip {
+  border: 1px solid var(--line);
+  background: var(--cream);
+  color: var(--ink-soft);
+  border-radius: 999px;
+  padding: 8px 15px;
+  font-size: .88rem;
+  font-weight: 500;
+  transition: all .15s ease;
+}
+.chip:hover {
+  border-color: var(--green-300);
+  color: var(--green-700);
+}
+/* Chip seleccionado (lo marca el JS con .is-selected). */
+.chip.is-selected {
+  background: var(--green-600);
+  border-color: var(--green-600);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(79, 128, 80, .3);
+}
+
+.onboarding__actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* =================================================================
+   VISTA APP (sidebar + chat)
+   ================================================================= */
+.app-shell {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ---------- Sidebar (panel lateral de aulas) ---------- */
+.sidebar {
+  width: var(--sidebar-width);
+  flex-shrink: 0; /* nunca se encoge: mantiene su ancho fijo */
+  background: var(--cream-2);
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  padding: 16px 14px;
+  gap: 14px;
+  transition: margin-left .25s ease; /* anima el deslizamiento al ocultar */
+}
+/* COLAPSAR la sidebar: la empujamos hacia la izquierda exactamente su
+   propio ancho, de modo que sale justo fuera de la pantalla.
+   La clase .sidebar-hidden la pone/quita el JS al pulsar el botón. */
+.app-shell.sidebar-hidden .sidebar {
+  margin-left: calc(var(--sidebar-width) * -1);
+}
+
+.sidebar__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sidebar__new {
+  font-size: .92rem;
+}
+
+.sidebar__section-label {
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding: 0 6px;
+}
+
+/* Lista de aulas: crece para ocupar el espacio libre y hace scroll. */
+.session-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.session-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 10px;
+  border-radius: 11px;
+  color: var(--ink-soft);
+  font-size: .92rem;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  transition: background .15s, color .15s;
+}
+.session-item:hover {
+  background: rgba(91, 140, 90, .1);
+  color: var(--ink);
+}
+/* Aula seleccionada actualmente. */
+.session-item.is-active {
+  background: var(--paper);
+  color: var(--green-900);
+  box-shadow: var(--shadow-sm);
+  font-weight: 600;
+}
+.session-item__icon {
+  font-size: 1.05rem;
+}
+/* El nombre ocupa el espacio y recorta con "…" si es muy largo. */
+.session-item__name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* El botón de borrar está oculto y solo aparece al pasar el ratón. */
+.session-item__del {
+  opacity: 0;
+  flex-shrink: 0;
+}
+.session-item:hover .session-item__del {
+  opacity: 1;
+}
+.session-item__del:hover {
+  color: var(--danger);
+  background: rgba(192, 83, 63, .1);
+}
+
+/* Pie del sidebar: chip del usuario. */
+.sidebar__foot {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+.user-chip {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  padding: 8px;
+  color: var(--ink);
+  text-align: left;
+  transition: background .15s;
+}
+.user-chip:hover {
+  background: rgba(91, 140, 90, .1);
+}
+.avatar {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%; /* círculo */
+  background: linear-gradient(135deg, var(--green-500), var(--green-700));
+  color: #fff;
+  font-weight: 700;
+  display: grid;
+  place-items: center; /* centra la inicial dentro del círculo */
+}
+.user-chip__meta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  overflow: hidden;
+}
+.user-chip__name {
+  font-weight: 600;
+  font-size: .9rem;
+}
+.user-chip__email {
+  font-size: .76rem;
+  color: var(--ink-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------- Chat (panel principal de conversación) ---------- */
+.chat {
+  flex: 1; /* ocupa todo el ancho que deje la sidebar */
+  display: flex;
+  flex-direction: column;
+  background: var(--cream);
+  min-width: 0; /* permite que el texto se recorte en vez de desbordar */
+}
+.chat__head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 22px;
+  border-bottom: 1px solid var(--line);
+  background: var(--cream);
+}
+/* Botón hamburguesa: oculto mientras la sidebar está visible... */
+.chat__menu {
+  display: none;
+}
+/* ...y visible cuando la sidebar está oculta, para poder reabrirla. */
+.app-shell.sidebar-hidden .chat__menu {
+  display: inline-flex;
+}
+.chat__title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+.chat__title-icon {
+  font-size: 1.4rem;
+}
+.chat__title-name {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--green-900);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.chat__title-sub {
+  font-size: .78rem;
+  color: var(--ink-faint);
+}
+.chat__head-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Insignia "Memoria activa" con punto que late. */
+.badge-rag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--green-50);
+  border: 1px solid var(--green-300);
+  color: var(--green-700);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: .78rem;
+  font-weight: 600;
+}
+.badge-rag .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green-600);
+  box-shadow: 0 0 0 0 rgba(79, 128, 80, .6);
+  animation: pulse 2s infinite;
+}
+/* Latido: un anillito que se expande y se desvanece. */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(79, 128, 80, .5);
+  }
+  70% {
+    box-shadow: 0 0 0 7px rgba(79, 128, 80, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(79, 128, 80, 0);
+  }
+}
+
+/* Zona scrolleable con los mensajes. */
+.chat__scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 28px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+/* Separador de día ("Hoy") centrado con una línea detrás. */
+.chat__day-sep {
+  text-align: center;
+  position: relative;
+  margin: 0 auto 4px;
+}
+.chat__day-sep span {
+  background: var(--cream);
+  position: relative;
+  z-index: 1; /* el texto va por encima de la línea */
+  padding: 0 14px;
+  font-size: .76rem;
+  color: var(--ink-faint);
+  font-weight: 600;
+}
+.chat__day-sep::before {
+  content: '';
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  top: 50%;
+  height: 1px;
+  background: var(--line);
+}
+
+/* ---------- Mensajes ---------- */
+.msg {
+  display: flex;
+  gap: 12px;
+  max-width: 760px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 22px;
+}
+/* Mensaje del usuario: se alinea a la derecha invirtiendo la fila. */
+.msg--user {
+  flex-direction: row-reverse;
+}
+.msg__avatar {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 9px;
+  background-color: var(--green-50);
+  border: 1px solid var(--green-300);
+  padding: 4px;
+}
+.msg__bubble {
+  border-radius: 16px;
+  padding: 13px 17px;
+  font-size: .95rem;
+  box-shadow: var(--shadow-sm);
+}
+/* Separación entre párrafos dentro de una misma burbuja. */
+.msg__bubble p + p {
+  margin-top: 10px;
+}
+/* Burbuja del bot: clara, con la esquina superior izquierda "pegada". */
+.msg--bot .msg__bubble {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-top-left-radius: 5px;
+}
+/* Burbuja del usuario: verde, con la esquina superior derecha "pegada". */
+.msg--user .msg__bubble {
+  background: linear-gradient(135deg, var(--green-600), var(--green-700));
+  color: #fff;
+  border-top-right-radius: 5px;
+}
+
+/* Indicador de "escribiendo…" (tres puntos que parpadean). */
+.typing {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  padding: 4px 0;
+}
+.typing span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green-300);
+  animation: blink 1.4s infinite both;
+}
+/* Cada punto parpadea con un pequeño retraso respecto al anterior. */
+.typing span:nth-child(2) {
+  animation-delay: .2s;
+}
+.typing span:nth-child(3) {
+  animation-delay: .4s;
+}
+@keyframes blink {
+  0%, 80%, 100% {
+    opacity: .25;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+/* ---------- Composer (caja para escribir el mensaje) ---------- */
+.composer {
+  padding: 14px 22px 18px;
+  border-top: 1px solid var(--line);
+  background: var(--cream);
+}
+.composer__form {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  max-width: 760px;
+  margin: 0 auto;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 8px 8px 8px 10px;
+  box-shadow: var(--shadow-sm);
+  transition: border-color .15s, box-shadow .15s;
+}
+/* Resalta toda la caja cuando el textarea de dentro tiene el foco. */
+.composer__form:focus-within {
+  border-color: var(--green-500);
+  box-shadow: 0 0 0 3px rgba(91, 140, 90, .16);
+}
+.composer__input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  resize: none;
+  font-family: inherit;
+  font-size: .96rem;
+  color: var(--ink);
+  padding: 8px 4px;
+  max-height: 160px; /* a partir de aquí aparece scroll en el textarea */
+  line-height: 1.5;
+}
+.composer__input:focus {
+  outline: none;
+}
+.composer__input::placeholder {
+  color: var(--ink-faint);
+}
+.composer__attach {
+  align-self: flex-end;
+  margin-bottom: 2px;
+}
+/* Botón de enviar (cuadrado verde con la flecha). */
+.composer__send {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--green-600), var(--green-700));
+  color: #fff;
+  display: grid;
+  place-items: center;
+  transition: transform .12s, box-shadow .2s;
+  box-shadow: 0 4px 12px rgba(63, 107, 64, .3);
+}
+.composer__send:hover {
+  box-shadow: 0 8px 18px rgba(63, 107, 64, .42);
+}
+.composer__send:active {
+  transform: scale(.94);
+}
+.composer__note {
+  text-align: center;
+  font-size: .74rem;
+  color: var(--ink-faint);
+  margin-top: 8px;
+}
+
+/* =================================================================
+   DEV · conmutador de vistas (solo para la maqueta; borrar al integrar)
+   ================================================================= */
+.devnav {
+  position: fixed;
+  z-index: 100;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%); /* centra la barra horizontalmente */
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(35, 64, 35, .92);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 999px;
+  padding: 6px 8px 6px 14px;
+  box-shadow: var(--shadow-lg);
+}
+.devnav__tag {
+  color: var(--green-300);
+  font-size: .78rem;
+  font-weight: 600;
+  margin-right: 4px;
+}
+.devnav button {
+  border: none;
+  background: transparent;
+  color: #e8efe4;
+  font-size: .82rem;
+  font-weight: 600;
+  padding: 6px 13px;
+  border-radius: 999px;
+  transition: background .15s, color .15s;
+}
+.devnav button:hover {
+  background: rgba(255, 255, 255, .12);
+}
+.devnav button.is-active {
+  background: var(--cream);
+  color: var(--green-900);
+}
+
+/* =================================================================
+   Responsive (pantallas pequeñas)
+   Las @media aplican reglas SOLO cuando el ancho es menor al límite.
+   ================================================================= */
+
+/* Tablets / pantallas medianas: ocultamos el arte del login. */
+
+/* =================================================================
+   Responsive aplicado a la vista de login
+   En este caso el arte del login se ve por debajo del panel, ajustando su orden.
+   ================================================================= */
+@media (max-width: 860px) {
+  .view--auth {
+    flex-direction: column;
+  }
+
+  .auth-art {
+    order: 2;
+    flex: 0 0 auto;
+    min-height: 240px;
+    padding: 32px;
+  }
+
+  .auth-panel{
+    order: 1;
+    flex: 0 1 auto;
+    padding: 30px;
+  }
+}
+
+/* Móviles: la sidebar pasa a flotar por encima del chat. */
+@media (max-width: 720px) {
+  /* La sidebar se vuelve un panel flotante a la izquierda. */
+  .sidebar {
+    position: fixed;
+    z-index: 30;
+    inset: 0 auto 0 0; /* pegada arriba, abajo e izquierda */
+    box-shadow: var(--shadow-lg);
+  }
+  /* Cuando la sidebar está abierta, oscurecemos el chat de fondo
+     (capa semitransparente que invita a cerrarla al tocar fuera). */
+  .app-shell:not(.sidebar-hidden) .chat::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    background: rgba(30, 40, 28, .35);
+  }
+  /* Misma técnica de ocultar que en escritorio: desplazar su ancho. */
+  .app-shell.sidebar-hidden .sidebar {
+    margin-left: calc(var(--sidebar-width) * -1);
+  }
+  /* En móvil estos dos botones se ven siempre. */
+  .chat__menu {
+    display: inline-flex;
+  }
+  .sidebar__collapse {
+    display: inline-flex;
+  }
+  .onboarding__title {
+    font-size: 1.6rem;
+  }
+}

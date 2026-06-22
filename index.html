@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meletis · Tu guía de estudio</title>
+  <meta name="description" content="Meletis — un agente de IA que aprende contigo y te guía en cada paso de tu estudio." />
+
+  <!-- Tipografías (degradan a fuentes del sistema si no hay conexión) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+</head>
+<body>
+
+  <!-- ============================================================= -->
+  <!-- VISTA: AUTENTICACIÓN  (RF-01)                                  -->
+  <!-- ============================================================= -->
+  <section class="view view--auth is-active" data-view="auth">
+    <div class="auth-art" aria-hidden="true">
+      <div class="auth-art__glow"></div>
+      <!-- Hojas cayendo de fondo -->
+      <span class="falling-leaf falling-leaf--1"></span>
+      <span class="falling-leaf falling-leaf--2"></span>
+      <span class="falling-leaf falling-leaf--3"></span>
+      <blockquote class="auth-art__quote">
+        <p>“El conocimiento que no se cuida, se cae como la hoja en otoño.”</p>
+        <cite>μελέτη · meletḗ — el cuidado de tu aprendizaje</cite>
+      </blockquote>
+    </div>
+
+    <div class="auth-panel">
+      <header class="brand">
+        <span class="brand__logo" data-logo></span>
+        <span class="brand__name">Meletis</span>
+      </header>
+
+      <div class="auth-card">
+        <div class="auth-tabs" role="tablist">
+          <button class="auth-tab is-active" role="tab" data-auth-tab="login">Iniciar sesión</button>
+          <button class="auth-tab" role="tab" data-auth-tab="register">Crear cuenta</button>
+        </div>
+
+        <!-- Login -->
+        <form class="auth-form is-active" data-auth-form="login" novalidate>
+          <h1 class="auth-title">Bienvenido de nuevo</h1>
+          <p class="auth-subtitle">Retoma tu estudio donde lo dejaste.</p>
+
+          <label class="field">
+            <span class="field__label">Correo electrónico</span>
+            <input class="field__input" type="email" name="email" placeholder="tu@correo.com" autocomplete="email" />
+          </label>
+
+          <label class="field">
+            <span class="field__label">Contraseña</span>
+            <input class="field__input" type="password" name="password" placeholder="••••••••" autocomplete="current-password" />
+          </label>
+
+          <button class="btn btn--primary btn--block" type="submit">Entrar</button>
+          <p class="auth-hint">¿No tienes cuenta? <button type="button" class="link" data-auth-tab="register">Regístrate gratis</button></p>
+        </form>
+
+        <!-- Registro -->
+        <form class="auth-form" data-auth-form="register" novalidate>
+          <h1 class="auth-title">Crea tu cuenta</h1>
+          <p class="auth-subtitle">Empecemos a construir tu perfil de aprendizaje.</p>
+
+          <label class="field">
+            <span class="field__label">Nombre</span>
+            <input class="field__input" type="text" name="name" placeholder="¿Cómo te llamas?" autocomplete="name" />
+          </label>
+
+          <label class="field">
+            <span class="field__label">Correo electrónico</span>
+            <input class="field__input" type="email" name="email" placeholder="tu@correo.com" autocomplete="email" />
+          </label>
+
+          <label class="field">
+            <span class="field__label">Contraseña</span>
+            <input class="field__input" type="password" name="password" placeholder="Mínimo 8 caracteres" autocomplete="new-password" />
+          </label>
+
+          <button class="btn btn--primary btn--block" type="submit">Crear cuenta</button>
+          <p class="auth-hint">¿Ya tienes cuenta? <button type="button" class="link" data-auth-tab="login">Inicia sesión</button></p>
+        </form>
+      </div>
+
+      <footer class="auth-foot">Meletis · maqueta de frontend</footer>
+    </div>
+  </section>
+
+  <!-- VISTA: ONBOARDING DE PERFIL  (RF-02)-->
+  <section class="view view--onboarding" data-view="onboarding">
+    <div class="onboarding">
+      <header class="brand brand--center">
+        <span class="brand__logo" data-logo></span>
+        <span class="brand__name">Meletis</span>
+      </header>
+
+      <div class="onboarding__head">
+        <span class="pill">Paso 1 de 1 · Perfil</span>
+        <h1 class="onboarding__title">Cuéntame cómo aprendes</h1>
+        <p class="onboarding__subtitle">
+          Esto me ayuda a personalizar cada explicación. Podrás editarlo cuando quieras.
+        </p>
+      </div>
+
+      <form class="onboarding-form" novalidate>
+        <fieldset class="ob-block">
+          <legend class="ob-block__title">💪 Tus fortalezas</legend>
+          <p class="ob-block__hint">¿En qué te sientes seguro/a? (temas, habilidades…)</p>
+          <textarea class="field__input field__input--area" name="strengths" rows="2" placeholder="Ej. lógica matemática, memoria visual, constancia…"></textarea>
+        </fieldset>
+
+        <fieldset class="ob-block">
+          <legend class="ob-block__title">🌱 Tus debilidades</legend>
+          <p class="ob-block__hint">¿Qué se te complica o te gustaría reforzar?</p>
+          <textarea class="field__input field__input--area" name="weaknesses" rows="2" placeholder="Ej. concentración, álgebra abstracta, inglés técnico…"></textarea>
+        </fieldset>
+
+        <fieldset class="ob-block">
+          <legend class="ob-block__title">📚 Conocimientos previos</legend>
+          <p class="ob-block__hint">¿Qué ya dominas o has estudiado antes?</p>
+          <textarea class="field__input field__input--area" name="knowledge" rows="2" placeholder="Ej. Python básico, cálculo I, fundamentos de redes…"></textarea>
+        </fieldset>
+
+        <fieldset class="ob-block">
+          <legend class="ob-block__title">🎯 Estilos de aprendizaje preferidos</legend>
+          <p class="ob-block__hint">Elige los que mejor te describan.</p>
+          <div class="chips" data-chips="learning-styles">
+            <button type="button" class="chip" data-value="visual">Visual</button>
+            <button type="button" class="chip" data-value="auditivo">Auditivo</button>
+            <button type="button" class="chip" data-value="lectura">Lectura / escritura</button>
+            <button type="button" class="chip" data-value="practico">Práctico / haciendo</button>
+            <button type="button" class="chip" data-value="ejemplos">Con ejemplos</button>
+            <button type="button" class="chip" data-value="analogias">Con analogías</button>
+            <button type="button" class="chip" data-value="paso-a-paso">Paso a paso</button>
+            <button type="button" class="chip" data-value="reto">A base de retos</button>
+          </div>
+        </fieldset>
+
+        <div class="onboarding__actions">
+          <button type="button" class="btn btn--ghost" data-skip-onboarding>Omitir por ahora</button>
+          <button type="submit" class="btn btn--primary">Guardar y empezar</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- VISTA: APP PRINCIPAL  (RF-03 aulas · RF-04/05 chat)           -->
+  <section class="view view--app" data-view="app">
+    <div class="app-shell">
+
+      <!-- Sidebar: gestión de aulas (RF-03) -->
+      <aside class="sidebar" data-sidebar>
+        <header class="sidebar__head">
+          <div class="brand brand--sm">
+            <span class="brand__logo" data-logo></span>
+            <span class="brand__name">Meletis</span>
+          </div>
+          <button class="icon-btn sidebar__collapse" data-toggle-sidebar title="Ocultar panel" aria-label="Ocultar panel">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </header>
+
+        <button class="btn btn--primary btn--block sidebar__new" data-new-session>
+          <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Nueva aula
+        </button>
+
+        <div class="sidebar__section-label">Tus aulas</div>
+        <nav class="session-list" data-session-list>
+          <a class="session-item is-active" data-session>
+            <span class="session-item__icon">🧮</span>
+            <span class="session-item__name">Repaso de Matemáticas</span>
+            <button class="icon-btn session-item__del" data-delete-session title="Eliminar aula" aria-label="Eliminar aula">
+              <svg viewBox="0 0 24 24" width="16" height="16"><path d="M4 7h16M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2m-9 0v12a1 1 0 001 1h8a1 1 0 001-1V7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </a>
+          <a class="session-item" data-session>
+            <span class="session-item__icon">💻</span>
+            <span class="session-item__name">Lógica de Programación</span>
+            <button class="icon-btn session-item__del" data-delete-session title="Eliminar aula" aria-label="Eliminar aula">
+              <svg viewBox="0 0 24 24" width="16" height="16"><path d="M4 7h16M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2m-9 0v12a1 1 0 001 1h8a1 1 0 001-1V7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </a>
+          <a class="session-item" data-session>
+            <span class="session-item__icon">🧬</span>
+            <span class="session-item__name">Biología celular</span>
+            <button class="icon-btn session-item__del" data-delete-session title="Eliminar aula" aria-label="Eliminar aula">
+              <svg viewBox="0 0 24 24" width="16" height="16"><path d="M4 7h16M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2m-9 0v12a1 1 0 001 1h8a1 1 0 001-1V7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </a>
+        </nav>
+
+        <footer class="sidebar__foot">
+          <button class="user-chip" data-user-menu>
+            <span class="avatar">L</span>
+            <span class="user-chip__meta">
+              <span class="user-chip__name">ANGELUS</span>
+              <span class="user-chip__email">angelleonardohern3@gmail.com</span>
+            </span>
+            <svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </footer>
+      </aside>
+
+      <!-- Panel de chat (RF-04 / RF-05) -->
+      <main class="chat">
+        <header class="chat__head">
+          <button class="icon-btn chat__menu" data-toggle-sidebar title="Mostrar panel" aria-label="Mostrar panel">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M4 6h16M4 12h16M4 18h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+          <div class="chat__title">
+            <span class="chat__title-icon">🧮</span>
+            <div>
+              <h2 class="chat__title-name" data-current-session>Repaso de Matemáticas</h2>
+              <p class="chat__title-sub">Guiado por Meletis · con memoria de tu perfil</p>
+            </div>
+          </div>
+          <div class="chat__head-actions">
+            <button class="badge-rag" title="Recuperación de contexto activa (RAG)" data-rag-badge>
+              <span class="dot"></span> Memoria activa
+            </button>
+            <button class="icon-btn" data-edit-profile title="Editar perfil de aprendizaje" aria-label="Editar perfil">
+              <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 14a4 4 0 100-8 4 4 0 000 8zM4 21a8 8 0 0116 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </header>
+
+        <div class="chat__scroll" data-chat-scroll>
+          <div class="chat__day-sep"><span>Hoy</span></div>
+
+          <!-- Mensaje del agente -->
+          <article class="msg msg--bot">
+            <span class="msg__avatar" data-logo></span>
+            <div class="msg__bubble">
+              <p>¡Hola Usuario! 🍃 Recuerdo que te gusta aprender <strong>con analogías</strong> y <strong>paso a paso</strong>, y que querías reforzar el <strong>álgebra abstracta</strong>. ¿Por dónde quieres empezar hoy?</p>
+            </div>
+          </article>
+
+          <!-- Mensaje del usuario -->
+          <article class="msg msg--user">
+            <div class="msg__bubble">
+              <p>Quiero entender qué es una función inyectiva, no me queda claro.</p>
+            </div>
+          </article>
+
+          <!-- Mensaje del agente -->
+          <article class="msg msg--bot">
+            <span class="msg__avatar" data-logo></span>
+            <div class="msg__bubble">
+              <p>Perfecto, vamos con una analogía 🌟</p>
+              <p>Imagina un guardarropa: cada persona deja <em>un</em> abrigo en <em>un</em> gancho distinto. Si <strong>nunca dos personas comparten gancho</strong>, ese guardarropa es <strong>inyectivo</strong>: a cada salida le corresponde una sola entrada.</p>
+              <p>¿Quieres que lo veamos ahora con un ejemplo numérico, paso a paso?</p>
+            </div>
+          </article>
+        </div>
+
+        <!-- Composer (RF-04) -->
+        <footer class="composer">
+          <form class="composer__form" data-composer>
+            <button type="button" class="icon-btn composer__attach" title="Adjuntar" aria-label="Adjuntar">
+              <svg viewBox="0 0 24 24" width="20" height="20"><path d="M21 12.5l-8 8a5 5 0 01-7-7l8.5-8.5a3.5 3.5 0 015 5L9.5 17.5a2 2 0 01-3-3L14 7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <textarea class="composer__input" data-composer-input rows="1" placeholder="Escribe tu pregunta o pega un texto para estudiar…"></textarea>
+            <button type="submit" class="composer__send" title="Enviar" aria-label="Enviar">
+              <svg viewBox="0 0 24 24" width="20" height="20"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </form>
+          <p class="composer__note">Meletis usa tu perfil y tu historial para responder. Maqueta sin IA conectada.</p>
+        </footer>
+      </main>
+    </div>
+  </section>
+
+  <!-- DEV: conmutador de vistas (solo maqueta — borrar al integrar)  -->
+  <div class="devnav" data-devnav>
+    <span class="devnav__tag">🍃 vista:</span>
+    <button data-goto="auth">Login</button>
+    <button data-goto="onboarding">Onboarding</button>
+    <button data-goto="app">App / Chat</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
