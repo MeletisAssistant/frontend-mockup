@@ -352,7 +352,7 @@ button {
 
 /* Columna del formulario (centrada). */
 .auth-panel {
-  flex: 1 1 50%;
+  flex: 1 1 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -395,6 +395,11 @@ button {
   background: var(--paper);
   color: var(--green-900);
   box-shadow: var(--shadow-sm);
+}
+
+.auth-tab:hover{
+  background: var(--green-700);
+  color: var(--green-50);
 }
 
 /* Formularios: solo se muestra el que tiene .is-active (lo cambia el JS). */
@@ -891,7 +896,7 @@ button {
 /* ---------- Composer (caja para escribir el mensaje) ---------- */
 .composer {
   padding: 14px 22px 18px;
-  border-top: 1px solid var(--line);
+  border-top: 2px solid var(--line);
   background: var(--cream);
 }
 .composer__form {

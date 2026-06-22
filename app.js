@@ -166,13 +166,15 @@ function initChat() {
     showTypingPlaceholder(scroll);
   });
 
-  $('[data-edit-profile]').addEventListener('click', () => {
+  // Estos tres son opcionales: usamos ?. para que, si el botón no está
+  // en el HTML, NO se rompa el resto del arranque (p. ej. la navegación).
+  $('[data-edit-profile]')?.addEventListener('click', () => {
     emit('profile:edit');
     showView('onboarding');
   });
 
-  $('[data-rag-badge]').addEventListener('click', () => emit('chat:show-context'));
-  $('[data-user-menu]').addEventListener('click', () => emit('user:menu'));
+  $('[data-rag-badge]')?.addEventListener('click', () => emit('chat:show-context'));
+  $('[data-user-menu]')?.addEventListener('click', () => emit('user:menu'));
 }
 
 function appendUserBubble(scroll, text) {
