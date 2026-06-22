@@ -750,27 +750,6 @@ button {
   gap: 8px;
 }
 
-/* Insignia "Memoria activa" con punto que late. */
-.badge-rag {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  background: var(--green-50);
-  border: 1px solid var(--green-300);
-  color: var(--green-700);
-  border-radius: 999px;
-  padding: 6px 12px;
-  font-size: .78rem;
-  font-weight: 600;
-}
-.badge-rag .dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--green-600);
-  box-shadow: 0 0 0 0 rgba(79, 128, 80, .6);
-  animation: pulse 2s infinite;
-}
 /* Latido: un anillito que se expande y se desvanece. */
 @keyframes pulse {
   0% {
