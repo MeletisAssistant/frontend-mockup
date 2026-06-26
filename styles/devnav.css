@@ -1,0 +1,43 @@
+/* =================================================================
+   Meletis · devnav.css
+   DEV · conmutador de vistas (solo para la maqueta; borrar al integrar).
+   ================================================================= */
+.devnav {
+  position: fixed;
+  z-index: 100;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%); /* centra la barra horizontalmente */
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(35, 64, 35, .92);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 999px;
+  padding: 6px 8px 6px 14px;
+  box-shadow: var(--shadow-lg);
+}
+.devnav__tag {
+  color: var(--green-300);
+  font-size: .78rem;
+  font-weight: 600;
+  margin-right: 4px;
+}
+.devnav button {
+  border: none;
+  background: transparent;
+  color: #e8efe4;
+  font-size: .82rem;
+  font-weight: 600;
+  padding: 6px 13px;
+  border-radius: 999px;
+  transition: background .15s, color .15s;
+}
+.devnav button:hover {
+  background: rgba(255, 255, 255, .12);
+}
+.devnav button.is-active {
+  background: var(--cream);
+  color: var(--green-900);
+}

@@ -1,0 +1,156 @@
+/* =================================================================
+   Meletis · components.css
+   Piezas de UI compartidas por varias vistas: marca/logo, botones,
+   enlaces, botones de ícono y campos de formulario.
+   ================================================================= */
+
+/* ---------- Marca / logo ---------- */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand--center {
+  justify-content: center;
+  align-items: center;
+}
+.brand__logo {
+  width: 34px;
+  height: 34px;
+  background: url('../assets/logo.svg') center / contain no-repeat;
+  display: inline-block;
+  filter: drop-shadow(0 2px 4px rgba(60, 90, 55, .18));
+}
+.brand__name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.45rem;
+  letter-spacing: -.01em;
+  color: var(--green-900);
+}
+/* Variante pequeña de la marca (la del sidebar) */
+.brand--sm .brand__logo {
+  width: 28px;
+  height: 28px;
+}
+.brand--sm .brand__name {
+  font-size: 1.2rem;
+}
+
+/* [data-logo] genéricos: cualquier elemento marcado así muestra el logo
+   (se usan como avatar del bot y como íconos). */
+[data-logo] {
+  background: url('../assets/logo.svg') center / contain no-repeat;
+  display: inline-block;
+}
+
+/* ---------- Botones ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: var(--radius);
+  padding: 12px 20px;
+  font-size: .95rem;
+  font-weight: 600;
+  transition: transform .12s ease, box-shadow .2s ease, background .2s ease;
+}
+/* Pequeño "hundido" al pulsar, para dar sensación de clic. */
+.btn:active {
+  transform: translateY(1px);
+}
+/* Modificador: ocupa todo el ancho disponible. */
+.btn--block {
+  width: 100%;
+}
+/* Botón principal (acción más importante). */
+.btn--primary {
+  background: linear-gradient(135deg, var(--green-600), var(--green-700));
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(63, 107, 64, .28);
+}
+.btn--primary:hover {
+  box-shadow: 0 10px 24px rgba(63, 107, 64, .38);
+}
+/* Botón secundario / discreto (solo borde). */
+.btn--ghost {
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+}
+.btn--ghost:hover {
+  background: var(--cream-2);
+  color: var(--ink);
+}
+
+/* Enlace con aspecto de texto (no de botón). */
+.link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--green-700);
+  font-weight: 600;
+  font-size: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.link:hover {
+  color: var(--green-900);
+}
+
+/* Botón que solo contiene un ícono (cuadrado, sin fondo). */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--ink-soft);
+  border-radius: 10px;
+  padding: 7px;
+  transition: background .15s, color .15s;
+}
+.icon-btn:hover {
+  background: var(--cream-2);
+  color: var(--ink);
+}
+
+/* ---------- Campos de formulario ---------- */
+.field {
+  display: block;
+  margin-bottom: 16px;
+}
+.field__label {
+  display: block;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+.field__input {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: .95rem;
+  color: var(--ink);
+  transition: border-color .15s, box-shadow .15s;
+}
+.field__input::placeholder {
+  color: var(--ink-faint);
+}
+/* Estado de foco: borde verde + halo suave alrededor. */
+.field__input:focus {
+  outline: none;
+  border-color: var(--green-500);
+  box-shadow: 0 0 0 3px rgba(91, 140, 90, .18);
+}
+/* Variante de área de texto (se puede estirar en vertical). */
+.field__input--area {
+  resize: vertical;
+  min-height: 56px;
+  line-height: 1.5;
+}

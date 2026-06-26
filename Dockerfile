@@ -1,10 +1,15 @@
-FROM nginx:alpine
+FROM node:lts-alpine
 
-# Copiar los archivos del proyecto al directorio público de nginx
-COPY . /usr/share/nginx/html
+# Instalar un servidor estático ligero
+RUN npm install -g serve
+
+WORKDIR /app
+
+# Copiar los archivos del proyecto
+COPY . .
 
 # Exponer el puerto 80
 EXPOSE 80
 
-# Iniciar Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Servir los archivos estáticos
+CMD ["serve", "-s", ".", "-l", "80"]

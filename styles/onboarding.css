@@ -1,0 +1,106 @@
+/* =================================================================
+   Meletis · onboarding.css  ·  VISTA ONBOARDING (perfil de aprendizaje)
+   ================================================================= */
+.view--onboarding {
+  background: var(--cream);
+}
+.onboarding {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.onboarding__head {
+  text-align: center;
+}
+/* Etiqueta tipo "píldora" (Paso 1 de 1). */
+.pill {
+  display: inline-block;
+  background: var(--green-50);
+  color: var(--green-700);
+  border: 1px solid var(--green-300);
+  border-radius: 999px; /* 999px = forma de cápsula totalmente redondeada */
+  padding: 5px 14px;
+  font-size: .78rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.onboarding__title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--green-900);
+  letter-spacing: -.01em;
+}
+.onboarding__subtitle {
+  color: var(--ink-soft);
+  margin-top: 8px;
+}
+
+.onboarding-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+/* Cada "bloque" del formulario (fortalezas, debilidades, etc.). */
+.ob-block {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+}
+.ob-block__title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--green-900);
+}
+.ob-block__hint {
+  font-size: .85rem;
+  color: var(--ink-soft);
+  margin: 4px 0 12px;
+}
+
+/* Chips de selección múltiple (estilos de aprendizaje). */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip {
+  border: 1px solid var(--line);
+  background: var(--cream);
+  color: var(--ink-soft);
+  border-radius: 999px;
+  padding: 8px 15px;
+  font-size: .88rem;
+  font-weight: 500;
+  transition: all .15s ease;
+}
+.chip:hover {
+  border-color: var(--green-300);
+  color: var(--green-700);
+}
+/* Chip seleccionado (lo marca el JS con .is-selected). */
+.chip.is-selected {
+  background: var(--green-600);
+  border-color: var(--green-600);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(79, 128, 80, .3);
+}
+
+.onboarding__actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+  .onboarding__title {
+    font-size: 1.6rem;
+  }
+}
