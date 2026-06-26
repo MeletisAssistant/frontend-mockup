@@ -1,0 +1,73 @@
+<!-- VISTA: AUTENTICACIÓN  (RF-01) -->
+<section class="view view--auth is-active" data-view="auth">
+  <div class="auth-art" aria-hidden="true">
+    <div class="auth-art__glow"></div>
+    <!-- Hojas cayendo de fondo -->
+    <span class="falling-leaf falling-leaf--1"></span>
+    <span class="falling-leaf falling-leaf--2"></span>
+    <span class="falling-leaf falling-leaf--3"></span>
+    <blockquote class="auth-art__quote">
+      <p>“El conocimiento que no se cuida, se cae como la hoja en otoño.”</p>
+      <cite>μελέτη · meletḗ — el cuidado de tu aprendizaje</cite>
+    </blockquote>
+  </div>
+
+  <div class="auth-panel">
+    <header class="brand">
+      <span class="brand__logo" data-logo></span>
+      <span class="brand__name">Meletis</span>
+    </header>
+
+    <div class="auth-card">
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab is-active" role="tab" data-auth-tab="login">Iniciar sesión</button>
+        <button class="auth-tab" role="tab" data-auth-tab="register">Crear cuenta</button>
+      </div>
+
+      <!-- Login -->
+      <form class="auth-form is-active" data-auth-form="login" novalidate>
+        <h1 class="auth-title">Bienvenido de nuevo</h1>
+        <p class="auth-subtitle">Retoma tu estudio donde lo dejaste.</p>
+
+        <label class="field">
+          <span class="field__label">Correo electrónico</span>
+          <input class="field__input" type="email" name="email" placeholder="tu@correo.com" autocomplete="email" />
+        </label>
+
+        <label class="field">
+          <span class="field__label">Contraseña</span>
+          <input class="field__input" type="password" name="password" placeholder="••••••••" autocomplete="current-password" />
+        </label>
+
+        <button class="btn btn--primary btn--block" type="submit">Entrar</button>
+        <p class="auth-hint">¿No tienes cuenta? <button type="button" class="link" data-auth-tab="register">Regístrate gratis</button></p>
+      </form>
+
+      <!-- Registro -->
+      <form class="auth-form" data-auth-form="register" novalidate>
+        <h1 class="auth-title">Crea tu cuenta</h1>
+        <p class="auth-subtitle">Empecemos a construir tu perfil de aprendizaje.</p>
+
+        <label class="field">
+          <span class="field__label">Nombre</span>
+          <input class="field__input" type="text" name="name" placeholder="¿Cómo te llamas?" autocomplete="name" />
+        </label>
+
+        <label class="field">
+          <span class="field__label">Correo electrónico</span>
+          <input class="field__input" type="email" name="email" placeholder="tu@correo.com" autocomplete="email" />
+        </label>
+
+        <label class="field">
+          <span class="field__label">Contraseña</span>
+          <input class="field__input" type="password" name="password" placeholder="Mínimo 8 caracteres" autocomplete="new-password" />
+        </label>
+
+        <button class="btn btn--primary btn--block" type="submit">Crear cuenta</button>
+        <p class="auth-hint">¿Ya tienes cuenta? <button type="button" class="link" data-auth-tab="login">Inicia sesión</button></p>
+      </form>
+    </div>
+
+    <footer class="auth-foot">Meletis · maqueta de frontend</footer>
+  </div>
+</section>

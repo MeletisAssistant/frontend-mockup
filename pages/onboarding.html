@@ -1,0 +1,57 @@
+<!-- VISTA: ONBOARDING DE PERFIL -->
+<section class="view view--onboarding" data-view="onboarding">
+  <div class="onboarding">
+    <header class="brand brand--center">
+      <span class="brand__logo" data-logo></span>
+      <span class="brand__name">Meletis</span>
+    </header>
+
+    <div class="onboarding__head">
+      <span class="pill">Paso 1 de 1 · Perfil</span>
+      <h1 class="onboarding__title">Cuéntame cómo aprendes</h1>
+      <p class="onboarding__subtitle">
+        Esto me ayuda a personalizar cada explicación. Podrás editarlo cuando quieras.
+      </p>
+    </div>
+
+    <form class="onboarding-form" novalidate>
+      <fieldset class="ob-block">
+        <legend class="ob-block__title">💪 Tus fortalezas</legend>
+        <p class="ob-block__hint">¿En qué te sientes seguro/a? (temas, habilidades…)</p>
+        <textarea class="field__input field__input--area" name="strengths" rows="2" placeholder="Ej. lógica matemática, memoria visual, constancia…"></textarea>
+      </fieldset>
+
+      <fieldset class="ob-block">
+        <legend class="ob-block__title">🌱 Tus debilidades</legend>
+        <p class="ob-block__hint">¿Qué se te complica o te gustaría reforzar?</p>
+        <textarea class="field__input field__input--area" name="weaknesses" rows="2" placeholder="Ej. concentración, álgebra abstracta, inglés técnico…"></textarea>
+      </fieldset>
+
+      <fieldset class="ob-block">
+        <legend class="ob-block__title">📚 Conocimientos previos</legend>
+        <p class="ob-block__hint">¿Qué ya dominas o has estudiado antes?</p>
+        <textarea class="field__input field__input--area" name="knowledge" rows="2" placeholder="Ej. Python básico, cálculo I, fundamentos de redes…"></textarea>
+      </fieldset>
+
+      <fieldset class="ob-block">
+        <legend class="ob-block__title">🎯 Estilos de aprendizaje preferidos</legend>
+        <p class="ob-block__hint">Elige los que mejor te describan.</p>
+        <div class="chips" data-chips="learning-styles">
+          <button type="button" class="chip" data-value="visual">Visual</button>
+          <button type="button" class="chip" data-value="auditivo">Auditivo</button>
+          <button type="button" class="chip" data-value="lectura">Lectura / escritura</button>
+          <button type="button" class="chip" data-value="practico">Práctico / haciendo</button>
+          <button type="button" class="chip" data-value="ejemplos">Con ejemplos</button>
+          <button type="button" class="chip" data-value="analogias">Con analogías</button>
+          <button type="button" class="chip" data-value="paso-a-paso">Paso a paso</button>
+          <button type="button" class="chip" data-value="reto">A base de retos</button>
+        </div>
+      </fieldset>
+
+      <div class="onboarding__actions">
+        <button type="button" class="btn btn--ghost" data-skip-onboarding>Omitir por ahora</button>
+        <button type="submit" class="btn btn--primary">Guardar y empezar</button>
+      </div>
+    </form>
+  </div>
+</section>
