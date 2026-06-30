@@ -1,10 +1,6 @@
-/* =================================================================
-   Meletis · components.css
-   Piezas de UI compartidas por varias vistas: marca/logo, botones,
-   enlaces, botones de ícono y campos de formulario.
-   ================================================================= */
 
-/* ---------- Marca / logo ---------- */
+
+
 .brand {
   display: flex;
   align-items: center;
@@ -28,7 +24,7 @@
   letter-spacing: -.01em;
   color: var(--green-900);
 }
-/* Variante pequeña de la marca (la del sidebar) */
+
 .brand--sm .brand__logo {
   width: 28px;
   height: 28px;
@@ -37,14 +33,13 @@
   font-size: 1.2rem;
 }
 
-/* [data-logo] genéricos: cualquier elemento marcado así muestra el logo
-   (se usan como avatar del bot y como íconos). */
+
 [data-logo] {
   background: url('../assets/logo.svg') center / contain no-repeat;
   display: inline-block;
 }
 
-/* ---------- Botones ---------- */
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -57,15 +52,15 @@
   font-weight: 600;
   transition: transform .12s ease, box-shadow .2s ease, background .2s ease;
 }
-/* Pequeño "hundido" al pulsar, para dar sensación de clic. */
+
 .btn:active {
   transform: translateY(1px);
 }
-/* Modificador: ocupa todo el ancho disponible. */
+
 .btn--block {
   width: 100%;
 }
-/* Botón principal (acción más importante). */
+
 .btn--primary {
   background: linear-gradient(135deg, var(--green-600), var(--green-700));
   color: #fff;
@@ -74,7 +69,7 @@
 .btn--primary:hover {
   box-shadow: 0 10px 24px rgba(63, 107, 64, .38);
 }
-/* Botón secundario / discreto (solo borde). */
+
 .btn--ghost {
   background: transparent;
   color: var(--ink-soft);
@@ -85,7 +80,7 @@
   color: var(--ink);
 }
 
-/* Enlace con aspecto de texto (no de botón). */
+
 .link {
   background: none;
   border: none;
@@ -100,7 +95,7 @@
   color: var(--green-900);
 }
 
-/* Botón que solo contiene un ícono (cuadrado, sin fondo). */
+
 .icon-btn {
   display: inline-flex;
   align-items: center;
@@ -117,7 +112,7 @@
   color: var(--ink);
 }
 
-/* ---------- Campos de formulario ---------- */
+
 .field {
   display: block;
   margin-bottom: 16px;
@@ -142,13 +137,13 @@
 .field__input::placeholder {
   color: var(--ink-faint);
 }
-/* Estado de foco: borde verde + halo suave alrededor. */
+
 .field__input:focus {
   outline: none;
   border-color: var(--green-500);
   box-shadow: 0 0 0 3px rgba(91, 140, 90, .18);
 }
-/* Variante de área de texto (se puede estirar en vertical). */
+
 .field__input--area {
   resize: vertical;
   min-height: 56px;

@@ -1,60 +1,30 @@
-/* =================================================================
-   Meletis · base.css
-   Variables de diseño (:root), reseteo y reglas globales.
-
-   GUÍA DE LECTURA (para quien llega nuevo al proyecto):
-   - Las variables de color y de forma viven en :root. Cambiarlas aquí
-     una sola vez actualiza todo el sitio.
-   - Cada bloque de reglas escribe una propiedad por línea para que sea
-     fácil de leer y de modificar.
-   - Las clases siguen la convención BLOQUE__elemento--modificador
-     (ej: .sidebar__head, .btn--primary).
-   ================================================================= */
-
-:root {
-  /* ---------- Colores: verdes ---------- */
-  --green-900: #234023; /* verde más oscuro (títulos) */
+:root {  
+  --green-900: #234023; 
   --green-700: #3f6b40;
   --green-600: #4f8050;
   --green-500: #5b8c5a;
   --green-300: #a9c8a4;
-  --green-50:  #eef4ec; /* verde casi blanco (fondos suaves) */
-
-  /* ---------- Colores: ámbar (acentos otoñales) ---------- */
+  --green-50:  #eef4ec; 
   --amber-500: #c98a3a;
   --amber-300: #e8c79a;
-
-  /* ---------- Colores: cremas y papel (fondos) ---------- */
-  --cream:      #faf7f0; /* fondo claro principal (chat, paneles) */
-  --cream-2:    #f3eee3; /* crema un poco más oscuro (sidebar) */
-  --paper:      #ffffff; /* blanco puro: tarjetas, burbujas, inputs */
-
-  /* ---------- Colores: texto (tinta) ---------- */
-  --ink:       #2a2f29; /* texto principal */
-  --ink-soft:  #5d655c; /* texto secundario */
-  --ink-faint: #8b948a; /* texto tenue (notas, placeholders) */
-
-  /* ---------- Colores: líneas y estados ---------- */
-  --line:      #e4ded0; /* bordes normales */
-  --line-soft: #efe9dd; /* bordes muy suaves */
-  --danger:    #c0533f; /* acciones destructivas (eliminar) */
-
-  /* ---------- Forma: radios de esquina ---------- */
+  --cream:      #faf7f0; 
+  --cream-2:    #f3eee3; 
+  --paper:      #ffffff; 
+  --ink:       #2a2f29; 
+  --ink-soft:  #5d655c; 
+  --ink-faint: #8b948a; 
+  --line:      #e4ded0; 
+  --line-soft: #efe9dd; 
+  --danger:    #c0533f; 
   --radius-sm: 8px;
   --radius:    14px;
   --radius-lg: 22px;
-
-  /* ---------- Forma: sombras ---------- */
   --shadow-sm: 0 1px 2px rgba(40, 50, 35, .06);
   --shadow:    0 8px 30px rgba(45, 60, 40, .10);
   --shadow-lg: 0 24px 60px rgba(35, 55, 35, .16);
-
-  /* ---------- Tipografías ---------- */
   --font-sans:  'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
-
-  /* ---------- Medidas de la interfaz ---------- */
-  --sidebar-width: 290px; /* ancho del panel lateral; se reutiliza para esconderlo */
+  --sidebar-width: 290px; 
 }
 
 :root[data-theme="dark"] {
@@ -63,8 +33,7 @@
   --paper: #413f28;
 }
 
-/* Reseteo básico: que padding/border no agranden las cajas, y sin
-   márgenes ni rellenos por defecto del navegador. */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -80,18 +49,17 @@ body {
 body {
   font-family: var(--font-sans);
   color: var(--ink);
-  background: var(--cream); /* queda oculto bajo las vistas a pantalla completa */
+  background: var(--cream); 
   -webkit-font-smoothing: antialiased;
   line-height: 1.5;
 }
 
 button {
-  font-family: inherit; /* los botones heredan la fuente del sitio */
+  font-family: inherit; 
   cursor: pointer;
 }
 
-/* ---------- Vistas (un "router" muy simple controlado por JS) ----------
-   Solo puede haber una vista activa a la vez. El JS pone/quita .is-active. */
+
 .view {
   display: none;
   min-height: 100vh;
@@ -99,7 +67,7 @@ button {
 .view.is-active {
   display: block;
 }
-/* Estas dos vistas usan flex cuando están activas (layout a columnas/filas). */
+
 .view--app.is-active,
 .view--auth.is-active {
   display: flex;

@@ -1,8 +1,4 @@
-/* =================================================================
-   Meletis · main.css  (punto de entrada de estilos)
-   Importa las hojas en orden: base → componentes → vistas → dev.
-   El orden importa: lo de abajo puede sobrescribir lo de arriba.
-   ================================================================= */
+
 @import "base.css";
 @import "components.css";
 @import "auth.css";

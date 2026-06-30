@@ -1,12 +1,9 @@
-/* =================================================================
-   Meletis · auth.css  ·  VISTA AUTH (login / registro)
-   Dos columnas: arte a la izquierda, formulario a la derecha.
-   ================================================================= */
+
 .view--auth {
   flex-direction: row;
 }
 
-/* Columna decorativa (degradado verde + brillo + hojas cayendo). */
+
 .auth-art {
   position: relative;
   flex: 1 1 50%;
@@ -18,7 +15,7 @@
   align-items: flex-end;
   padding: 56px 40px;
 }
-/* Mancha de luz ámbar, abajo a la derecha. */
+
 .auth-art__glow {
   position: absolute;
   inset: auto -10% -30% auto;
@@ -48,7 +45,7 @@
   letter-spacing: .02em;
 }
 
-/* Hojas decorativas que caen de fondo. */
+
 .falling-leaf {
   position: absolute;
   top: -40px;
@@ -58,7 +55,7 @@
   opacity: .5;
   animation: fall linear infinite;
 }
-/* Cada hoja arranca en una posición y a un ritmo distintos. */
+
 .falling-leaf--1 {
   left: 18%;
   animation-duration: 11s;
@@ -92,7 +89,7 @@
   }
 }
 
-/* Columna del formulario (centrada). */
+
 .auth-panel {
   flex: 1 1 70%;
   display: flex;
@@ -112,7 +109,7 @@
   box-shadow: var(--shadow);
   padding: 30px;
 }
-/* Pestañas "Iniciar sesión / Crear cuenta". */
+
 .auth-tabs {
   display: flex;
   gap: 4px;
@@ -132,7 +129,7 @@
   color: var(--ink-soft);
   transition: background .2s, color .2s, box-shadow .2s;
 }
-/* Pestaña activa: se "eleva" sobre el fondo. */
+
 .auth-tab.is-active {
   background: var(--paper);
   color: var(--green-900);
@@ -143,7 +140,7 @@
   color: var(--green-50);
 }
 
-/* Formularios: solo se muestra el que tiene .is-active (lo cambia el JS). */
+
 .auth-form {
   display: none;
 }
@@ -173,7 +170,7 @@
   color: var(--ink-faint);
 }
 
-/* Entrada suave: aparece subiendo unos píxeles. */
+
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -185,8 +182,7 @@
   }
 }
 
-/* ---------- Responsive ----------
-   Tablets / pantallas medianas: el arte pasa debajo del panel. */
+
 @media (max-width: 860px) {
   .view--auth {
     flex-direction: column;

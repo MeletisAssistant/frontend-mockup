@@ -1,13 +1,10 @@
-/* =================================================================
-   Meletis · devnav.css
-   DEV · conmutador de vistas (solo para la maqueta; borrar al integrar).
-   ================================================================= */
+
 .devnav {
   position: fixed;
   z-index: 100;
   bottom: 16px;
   left: 50%;
-  transform: translateX(-50%); /* centra la barra horizontalmente */
+  transform: translateX(-50%); 
   display: flex;
   align-items: center;
   gap: 4px;
