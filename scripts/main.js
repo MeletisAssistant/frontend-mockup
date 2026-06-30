@@ -1,5 +1,3 @@
-
-
 import { initDevNav } from './core/router.js';
 import { initAuth } from './views/auth.js';
 import { initOnboarding } from './views/onboarding.js';

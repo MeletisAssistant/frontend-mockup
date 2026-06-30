@@ -1,5 +1,3 @@
-
-
 import { $, $$ } from '../core/dom.js';
 import { emit } from '../core/events.js';
 

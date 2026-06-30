@@ -1,5 +1,3 @@
-
-
 import { $, $$ } from '../core/dom.js';
 
 export function initShell() {
