@@ -5,9 +5,7 @@ import { initSessions } from './views/sessions.js';
 import { initChat } from './views/chat.js';
 import { initShell } from './views/shell.js';
 
-
 const VIEWS = ['auth', 'onboarding', 'app'];
-
 
 async function loadViews() {
   const mount = document.querySelector('[data-views]');
@@ -21,7 +19,6 @@ async function loadViews() {
   );
   mount.innerHTML = parts.join('\n');
 }
-
 
 async function boot() {
   await loadViews();

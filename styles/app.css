@@ -1,3 +1,4 @@
+/*hoja de estilos para vista de la app de chat*/
 .app-shell {
   display: flex;
   width: 100%;
@@ -38,7 +39,6 @@
   color: var(--ink-faint);
   padding: 0 6px;
 }
-
 
 .session-list {
   flex: 1;
@@ -192,7 +192,6 @@
   gap: 8px;
 }
 
-
 .chat__scroll {
   flex: 1;
   overflow-y: auto;
@@ -225,7 +224,6 @@
   height: 1px;
   background: var(--line);
 }
-
 
 .msg {
   display: flex;
@@ -367,8 +365,8 @@
   margin-top: 8px;
 }
 
+/*responsive*/
 @media (max-width: 720px) {
-
   .sidebar {
     position: fixed;
     z-index: 30;

@@ -1,4 +1,5 @@
-
+/*importar hojas de estilo en index*/
+/*separar hojas de estilo por vistas y componentes base*/
 @import "base.css";
 @import "components.css";
 @import "auth.css";

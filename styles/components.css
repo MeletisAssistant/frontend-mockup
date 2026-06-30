@@ -1,6 +1,3 @@
-
-
-
 .brand {
   display: flex;
   align-items: center;
@@ -38,8 +35,6 @@
   background: url('../assets/logo.svg') center / contain no-repeat;
   display: inline-block;
 }
-
-
 .btn {
   display: inline-flex;
   align-items: center;
@@ -80,7 +75,6 @@
   color: var(--ink);
 }
 
-
 .link {
   background: none;
   border: none;
@@ -94,7 +88,6 @@
 .link:hover {
   color: var(--green-900);
 }
-
 
 .icon-btn {
   display: inline-flex;
@@ -111,7 +104,6 @@
   background: var(--cream-2);
   color: var(--ink);
 }
-
 
 .field {
   display: block;

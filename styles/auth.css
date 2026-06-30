@@ -1,8 +1,6 @@
-
 .view--auth {
   flex-direction: row;
 }
-
 
 .auth-art {
   position: relative;
@@ -44,7 +42,6 @@
   color: var(--green-300);
   letter-spacing: .02em;
 }
-
 
 .falling-leaf {
   position: absolute;
@@ -88,7 +85,6 @@
     opacity: 0;
   }
 }
-
 
 .auth-panel {
   flex: 1 1 70%;
@@ -140,7 +136,6 @@
   color: var(--green-50);
 }
 
-
 .auth-form {
   display: none;
 }
@@ -170,7 +165,6 @@
   color: var(--ink-faint);
 }
 
-
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -181,7 +175,6 @@
     transform: none;
   }
 }
-
 
 @media (max-width: 860px) {
   .view--auth {
